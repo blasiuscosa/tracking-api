@@ -1,5 +1,6 @@
-package com.example.tracking;
+package com.example.trackingapi;
 
+import com.example.trackingapi.service.TrackingNumberService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -32,7 +33,6 @@ public class TrackingNumberServiceTest {
         String origin = "MY";
         String destination = "ID";
         BigDecimal weight = BigDecimal.valueOf(1.234);
-        ZonedDateTime createdAt = ZonedDateTime.parse("2023-04-20T14:30:00+08:00");
         UUID customerId = UUID.randomUUID();
         String customerName = "RedBox Logistics";
         String customerSlug = "redbox-logistics";
@@ -42,7 +42,7 @@ public class TrackingNumberServiceTest {
 
         // Act
         String trackingNumber = trackingNumberService.generateTrackingNumber(
-                origin, destination, weight, createdAt, customerId, customerName, customerSlug);
+                origin, destination, weight, customerId, customerName, customerSlug);
 
         // Assert
         assertNotNull(trackingNumber);

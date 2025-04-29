@@ -1,12 +1,12 @@
-package com.example.tracking;
+package com.example.trackingapi;
 
+import com.example.trackingapi.controller.TrackingNumberController;
+import com.example.trackingapi.service.TrackingNumberService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.mockito.Mockito.*;
@@ -26,7 +26,7 @@ public class TrackingControllerTest {
     private TrackingNumberService trackingNumberService;
 
     @InjectMocks
-    private TrackingController trackingController;
+    private TrackingNumberController trackingController;
 
     @BeforeEach
     void setUp() {
@@ -42,7 +42,7 @@ public class TrackingControllerTest {
 
         when(trackingNumberService.generateTrackingNumber(
                 "MY", "ID", weight,
-                any(), customerId, "RedBox Logistics", "redbox-logistics"))
+                customerId, "RedBox Logistics", "redbox-logistics"))
                 .thenReturn(expectedTrackingNumber);
 
         // Act & Assert
@@ -60,6 +60,6 @@ public class TrackingControllerTest {
 
         verify(trackingNumberService, times(1)).generateTrackingNumber(
                 "MY", "ID", weight,
-                any(), customerId, "RedBox Logistics", "redbox-logistics");
+                customerId, "RedBox Logistics", "redbox-logistics");
     }
 }
